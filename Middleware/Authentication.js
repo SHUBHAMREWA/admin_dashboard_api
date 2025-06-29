@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken" ;
 import { User } from "../Model/User.js";
 import bcrypt from "bcryptjs";
 
-export const isAuth  = async(req , res ,next)=>{
+export const isAuth  = async(req , res , next)=>{
 
         let token = req.headers.forgotauth ; 
         

@@ -7,7 +7,7 @@ import { isAuth } from "../Middleware/Authentication.js";
 const router = express.Router() ;
 
 
-router.post( "/register" , userRegister)   ;
+router.post( "/signup" , userRegister)   ;
 
 router.post("/login" , userLogin ) ; 
 
