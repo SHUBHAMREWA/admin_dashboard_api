@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 export const isAuth  = async(req , res ,next)=>{
 
-        let token = req.headers.auth ; 
+        let token = req.headers.forgotauth ; 
         
         if(!token) return res.json({
             message : "send code to email First" , 
@@ -29,8 +29,9 @@ export const isAuth  = async(req , res ,next)=>{
 
          let verifyCode = await bcrypt.compare(req.body.code , verifyToken.code) ;
 
-         if(!verifyCode) return res.json({ message : "Invalid code try again" ,  success : false })  
-
+         if(!verifyCode) return  res.status(409).json({
+                                                        message: "verification failed"
+                                                        })
          req.user = user;
 
          next()
@@ -38,11 +39,9 @@ export const isAuth  = async(req , res ,next)=>{
                 
        }
        catch(error){
-        console.log(error) ;
-        return res.json({
-            message : error.name  ,
-            success : false 
-        })
+        return   res.status(409).json({
+                 message: "verification failed"
+                                         })
        }
        
 

@@ -11,8 +11,8 @@ router.post( "/register" , userRegister)   ;
 
 router.post("/login" , userLogin ) ; 
 
-router.post("/reset-password" , sendOtp ) ; 
+router.post("/forgot-password" , sendOtp ) ; 
 
-router.put("/set-passwored" , isAuth , setPassword)
+router.put("/forgot-password" , isAuth , setPassword)
 
 export default router ;
