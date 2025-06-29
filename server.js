@@ -3,11 +3,15 @@ import express from "express"  ;
 import mongoose from "mongoose" ;
 import  userRouter  from "./Routes/user.js" ;
 import bodyParser from "express" ;
-import {config} from "dotenv" ;
+import {config} from "dotenv" ;  
+import cors from "cors" ;
 
 const app = express()  ; 
 
 app.use(bodyParser.json())  ;
+
+app.use(cors());
+    
 
 // .env setup 
 config({path : ".env"})
