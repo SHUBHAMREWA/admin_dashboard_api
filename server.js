@@ -9,7 +9,8 @@ import cors from "cors" ;
 
 const app = express()  ; 
 
-app.use(bodyParser.json())  ;
+app.use(express.json());
+
 
 
 // ✅ Step 1: Define allowed origin
