@@ -10,8 +10,11 @@ import cors from "cors" ;
 const app = express()  ; 
 app.use(bodyParser.json())  ;
 
-app.use(cors()); 
-    
+// ✅ Allow only your Vercel frontend
+app.use(cors({
+  origin: "https://admin-dashboard-five-opal.vercel.app",  // ✅ Your frontend domain
+  credentials: true,   // agar tu cookie ya token bhej raha hai
+}));
 
 // .env setup 
 config({path : ".env"})
