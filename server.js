@@ -2,15 +2,15 @@
 import express from "express"  ;
 import mongoose from "mongoose" ;
 import  userRouter  from "./Routes/user.js" ;
+import verifyUserRouter from "./Routes/verifyUser.js"
 import bodyParser from "express" ;
 import {config} from "dotenv" ;  
 import cors from "cors" ;
 
 const app = express()  ; 
-
 app.use(bodyParser.json())  ;
 
-app.use(cors());
+app.use(cors()); 
     
 
 // .env setup 
@@ -30,7 +30,8 @@ mongoose.connect(  process.env.MONGO_URL , {
 
 
 // user routes  , Register , Login and , Forgot Password  
-app.use("/user" , userRouter)  
+app.use("/user" , userRouter)
+app.use("/user" , verifyUserRouter) 
 
 
 
