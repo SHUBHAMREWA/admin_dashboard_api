@@ -8,13 +8,33 @@ import {config} from "dotenv" ;
 import cors from "cors" ;
 
 const app = express()  ; 
+
 app.use(bodyParser.json())  ;
 
-// ✅ Allow only your Vercel frontend
+
+// ✅ Step 1: Define allowed origin
+const allowedOrigins = ["https://admin-dashboard-five-opal.vercel.app"];
+
+// ✅ Step 2: Use CORS with dynamic origin check
 app.use(cors({
-  origin: "https://admin-dashboard-five-opal.vercel.app",  // ✅ Your frontend domain
-  credentials: true,   // agar tu cookie ya token bhej raha hai
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 }));
+
+// ✅ Step 3: Manually handle OPTIONS preflight (important for Render)
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "https://admin-dashboard-five-opal.vercel.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.sendStatus(200);
+});
+
 
 // .env setup 
 config({path : ".env"})
