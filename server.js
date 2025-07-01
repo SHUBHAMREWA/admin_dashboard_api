@@ -1,9 +1,7 @@
-
 import express from "express"  ;
 import mongoose from "mongoose" ;
 import  userRouter  from "./Routes/user.js" ;
 import verifyUserRouter from "./Routes/verifyUser.js"
-import bodyParser from "express" ;
 import {config} from "dotenv" ;  
 import cors from "cors" ;
 
