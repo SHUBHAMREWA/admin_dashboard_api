@@ -7,16 +7,24 @@ import cors from "cors" ;
 
 const app = express()  ; 
 
+// ✅ Step 1: .env config (ye sabse upar hona chahiye)
+config({ path: ".env" });
+
+// ✅ Step 2: CORS Setup (before all routes)
+const allowedOrigin = "https://admin-dashboard-five-opal.vercel.app";
 
 app.use(cors({
-  origin: "https://admin-dashboard-five-opal.vercel.app",
-  credentials: true
+  origin: allowedOrigin,
+  credentials: true,
 }));
 
-app.use(express.json());
+// ✅ Step 3: Handle preflight requests manually (optional but safer)
+app.options("*", cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
 
-// .env setup 
-config({path : ".env"})
+app.use(express.json())  ;
 
 
 mongoose.connect(  process.env.MONGO_URL , {
