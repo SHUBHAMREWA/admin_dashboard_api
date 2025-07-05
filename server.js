@@ -13,8 +13,10 @@ config({ path: ".env" });
 // ✅ Step 2: CORS Setup (before all routes)
 const allowedOrigins = [
   "https://admin-dashboard-five-opal.vercel.app",
+  "https://admin-dashboard-git-main-shubhams-projects-28b0c14b.vercel.app",
   "http://localhost:5173",
   "http://localhost:3000",
+  "http://localhost:3001",
   "http://127.0.0.1:5173"
 ];
 
