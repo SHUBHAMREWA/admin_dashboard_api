@@ -124,12 +124,14 @@ export const setPassword = async(req , res)=>{
        let updatePassword = await User.findByIdAndUpdate( req.user._id  ,  { password : hashPass} , {new : true} )
      
       if(!updatePassword)  return   res.status(409).json({
-                                        message: "password not changed"
+                                        message: "password not changed" ,
+                                        success : false 
                                                               })
 
 
         res.status(200).json({
-            message: "password changed"
+            message: "password changed" ,
+            success  :true 
           })
           
 };

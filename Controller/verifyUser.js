@@ -10,13 +10,15 @@ export const verifyUser = (req, res) => {
     // ✅ Agar token valid hai
     return res.status(200).json({
       message: "Token is valid",
-      data: verify
+      data: verify , 
+      success : true
     });
 
   } catch (err) {
     // ❌ Agar token invalid ya expired hai
     return res.status(401).json({
-      message: "Invalid or expired token"
+      message: "Invalid or expired token" , 
+      success : false
     });
   }
 };
