@@ -82,10 +82,11 @@ export const sendOtp = async (req, res) => {
     const CheckEmail = await User.findOne({ email });
 
     if (!CheckEmail) {
-              res.status(404).json({
-              message: "user not found"
-            });
-        }
+      return res.status(404).json({
+        message: "user not found",
+        success: false,
+      });
+    }
 
     const otp = String(Math.floor(100000 + Math.random() * 900000));
 
